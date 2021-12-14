@@ -19,10 +19,6 @@ public class HttpServer {
 
     public void startServer(String directory1, String directory2, int port) throws IOException {
 
-        ExecutorService threadPool = Executors.newFixedThreadPool(3);
-        serverSocket = new ServerSocket(port);
-        System.out.println("Server listening at port " + port);
-
         if (!checkDirectory(directory1)) {
             System.out.println(directory1 + " directory not exist");
             System.exit(1);
@@ -33,6 +29,10 @@ public class HttpServer {
                 System.exit(1);
             }
         } 
+
+        ExecutorService threadPool = Executors.newFixedThreadPool(3);
+        serverSocket = new ServerSocket(port);
+        System.out.println("Server listening at port " + port);
 
         try {
             while(true) {
