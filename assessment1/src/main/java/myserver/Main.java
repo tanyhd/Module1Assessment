@@ -31,7 +31,7 @@ public class Main {
         }
         System.out.println("Port set to " + port);
         System.out.println("Directory set to " + directory1 + " and " + directory2);
-        //server.startServer(directory1, directory2, port);
+        server.startServer(directory1, directory2, port);
     }
-        //server.startServer(args[0], args[1]);  
+
 }
