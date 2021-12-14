@@ -1,4 +1,4 @@
-package assessment1.d10;
+package myserver;
 
 /**
  * Hello world!
