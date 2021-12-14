@@ -1,10 +1,11 @@
 package myserver;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         int port = 3000;
         String inputSetting ="";
@@ -29,8 +30,8 @@ public class Main {
                 }
             }
         }
-        System.out.println("Port set to " + port);
-        System.out.println("Directory set to " + directory1 + " and " + directory2);
+        //System.out.println("Port set to " + port);
+        //System.out.println("Directory set to " + directory1 + " and " + directory2);
         server.startServer(directory1, directory2, port);
     }
 
