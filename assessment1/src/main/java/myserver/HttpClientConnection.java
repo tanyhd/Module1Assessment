@@ -10,7 +10,6 @@ import java.nio.Buffer;
 
 public class HttpClientConnection implements Runnable {
     private final Socket socket;
-    private int id;
     private String inputFile;
 
     public HttpClientConnection(Socket socket) {
@@ -22,7 +21,6 @@ public class HttpClientConnection implements Runnable {
         PrintWriter out = null;
         BufferedReader in = null;
         String line = "";
-        System.out.println("Connection ID: " + id);
 
         try {
             out = new PrintWriter(socket.getOutputStream(), true);
@@ -32,12 +30,11 @@ public class HttpClientConnection implements Runnable {
             System.out.println("Something went wrong..");
         }
 
-        while (!"close".equals(line) && null != line) {
-
-            System.out.println("Client " + id + ": " + line);
+        while (true) {
             
             try {
-                
+                System.out.println(line);
+                break;
 
             } catch (Exception e) {
                 e.printStackTrace();

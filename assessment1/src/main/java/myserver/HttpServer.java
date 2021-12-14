@@ -19,29 +19,26 @@ public class HttpServer {
 
     public void startServer(String directory1, String directory2, int port) throws IOException {
 
-
         ExecutorService threadPool = Executors.newFixedThreadPool(3);
         serverSocket = new ServerSocket(port);
         System.out.println("Server listening at port " + port);
 
-        while (true) {
-            if (!checkDirectory(directory1)) {
-                System.out.println(directory1 + " directory not exist");
-                break;
-            } else if (!directory2.equals("")) {
-                directory2 = "./" + directory2;
-                if (!checkDirectory(directory2)) {
-                    System.out.println(directory2 + " directory does not exist");
-                    break;
-                }
+        if (!checkDirectory(directory1)) {
+            System.out.println(directory1 + " directory not exist");
+            System.exit(1);
+        } else if (!directory2.equals("")) {
+            directory2 = "./" + directory2;
+            if (!checkDirectory(directory2)) {
+                System.out.println(directory2 + " directory does not exist");
+                System.exit(1);
             }
         } 
 
         try {
-
             while(true) {
                 socket = serverSocket.accept();
                 HttpClientConnection worker = new HttpClientConnection(socket);
+                threadPool.submit(worker);
             }
         } finally {
             serverSocket.close();
